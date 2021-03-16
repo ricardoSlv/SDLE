@@ -25,13 +25,13 @@ def make_Connected(G):
             connects[nodes[1]] += 1
             G.add_edge(nodes[0], nodes[1])
             num = num + 1
-    print(connects)
+    # print(connects)
     return num, connects
 
 
 results = []
 for numNodes in nodes:
-    print(numNodes)
+    # print(numNodes)
     edges = []
     cons = []
     for i in range(0, 30):
@@ -58,16 +58,29 @@ for numNodes in nodes:
         else:
             values.append(x)
             occurrences.append(1)
-    # print(values)
-    # print(occurrences)
+    print(values)
+    print(occurrences)
     plt.clf()
+
+    # orderednodes = {}
+    # fakeresults = results[::1]
+    # print(len(results))
+    # for r in sorted(list(results), reverse=True):
+    #     print('ola ', r)
+    #     i = fakeresults.index(r)
+    #     orderednodes[nodes[i]] = fakeresults[i]
+    #     fakeresults.remove(fakeresults[i])
+
     plt.bar(values, occurrences, color='blue', width=0.4)
-    plt.savefig(f'static_dist_{numNodes}_nodes.png')
+    #plt.bar(orderednodes.keys(), orderednodes.values(), color='blue', width=0.4)
+    plt.savefig(f'static_dists_pics/{numNodes}_nodes.png')
+
 
 plt.clf()
 plt.xlabel("Number of Nodes")
 plt.ylabel("Average Number of Edges Inserted")
 plt.axis([min(nodes), max(nodes), min(results), max(results)])
+
 plt.plot(nodes, results)
 plt.savefig(f'static.png')
 # plt.savefig('file.pdf')
