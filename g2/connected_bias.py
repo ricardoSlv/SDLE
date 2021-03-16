@@ -36,8 +36,10 @@ for i in range(0, 30):
     results.append(sorted(connects, reverse=True))
 
 
-normalizedEdges = list(map(lambda sum: sum/30, reduce(lambda x, y: np.add(x, y), list(
-    map(lambda con: list(map(lambda val: val-1, con)), results)))))
+normalizedEdges = list(map(lambda sum: sum/30,
+                           reduce(lambda x, y: np.add(x, y),
+                                  list(map(lambda con: list(map(lambda val: val-1, con)),
+                                           results)))))
 
 values = []
 occurrences = []
@@ -54,7 +56,7 @@ print(occurrences)
 # plt.ylabel("Average Number of Edges Inserted")
 # plt.axis([0, 100, 0, 1000])
 
-#plt.plot(values, occurrences)
+# plt.plot(values, occurrences)
 plt.bar(values, occurrences, color='blue', width=0.4)
 plt.savefig(f'distribution.png')
 # plt.savefig('file.svg')
