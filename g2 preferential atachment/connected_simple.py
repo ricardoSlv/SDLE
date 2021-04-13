@@ -13,7 +13,7 @@ def create_Graph(num):
 def make_Connected(G):
     connects = [1 for _ in G.nodes]
     while not nx.is_connected(G):
-
+        # Mais chance de ser escolhido, mas mais change de a aresta ser repetida
         nodes = random.choices(list(G.nodes), weights=connects, k=2)
         if not G.has_edge(nodes[0], nodes[1]):
             connects[nodes[0]] += 1
