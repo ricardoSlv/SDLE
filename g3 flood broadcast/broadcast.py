@@ -37,7 +37,7 @@ def propagateMsg(G):
     msgs_sent = 0
     while(len(received) < len(G.nodes)):
         for r in received.copy():
-            if (r not in received):
+            if (r not in already_Sent):
                 already_Sent.add(r)
                 for n in G.neighbors(r):
                     received.add(n)
