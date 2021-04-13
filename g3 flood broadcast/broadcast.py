@@ -53,6 +53,7 @@ for n in nodes:
     linkCountResults = []
     diameterResults = []
     neighborsResults = []
+    # Generate 40 Graphs for each node count
     for _ in range(40):
         G = create_Graph(n)
         N = make_Connected_Excess(G)
@@ -60,7 +61,7 @@ for n in nodes:
         neighborCountlist = [len(list(G.neighbors(r))) for r in G.nodes]
         neighborsResults.append(sum(neighborCountlist)/len(neighborCountlist))
         diameterResults.append(nx.algorithms.distance_measures.diameter(G))
-
+        # For each graph randomly propage 1000 messages from random sources
         for _ in range(1000):
             msgs_sent = propagateMsg(G)
             messageCountResults.append(msgs_sent)
@@ -86,6 +87,7 @@ plt.ylabel("Average Number of Edges Inserted")
 plt.axis([min(nodes), max(nodes), min(edgesArray), max(edgesArray)])
 plt.plot(nodes, edgesArray)
 plt.savefig('results/edges.png')
+plt.clf()
 
 diameterArray = [n['avgDiameter'] for n in results.values()]
 plt.xlabel("Number of Nodes")
@@ -93,6 +95,8 @@ plt.ylabel("Average Diameter")
 plt.axis([min(nodes), max(nodes), min(diameterArray), max(diameterArray)])
 plt.plot(nodes, diameterArray)
 plt.savefig('results/diameter.png')
+plt.clf()
+
 
 neighborsArray = [n['avgNeighbors'] for n in results.values()]
 plt.xlabel("Number of Nodes")
@@ -100,6 +104,8 @@ plt.ylabel("Average Number of neighbors")
 plt.axis([min(nodes), max(nodes), min(neighborsArray), max(neighborsArray)])
 plt.plot(nodes, neighborsArray)
 plt.savefig('results/neighbors.png')
+plt.clf()
+
 
 avgMsgsArray = [n['avgMsgsSent'] for n in results.values()]
 plt.xlabel("Number of Nodes")
@@ -107,3 +113,4 @@ plt.ylabel("Average Number of messages sent")
 plt.axis([min(nodes), max(nodes), min(avgMsgsArray), max(avgMsgsArray)])
 plt.plot(nodes, avgMsgsArray)
 plt.savefig('results/msgs.png')
+plt.clf()
